@@ -4,19 +4,47 @@
       <img mat-card-image src="{{IMAGE_BASE_PATH+movieDetail.poster_path}}" alt="{{movieDetail.original_title}}" class="image">
     </mat-grid-tile>
     <mat-grid-tile [colspan]="3">
-        <span class="title">{{movieDetail.original_title}} ({{movieDetail.release_date}})</span>
+        <span class="title">{{movieDetail.original_title}} ({{release_year}})</span>
         <span class="tagline">{{movieDetail.tagline}}</span>
+        <span class="material-icons rel-date">theaters</span> <span class=rel-date-1>{{release_date}}</span>
         <span class="overview">Overview</span>
         <span class="overview-text">{{movieDetail.overview}}</span>
         <p class="revenue">
-            <span matBadge="{{movieDetail.revenue}}" matBadgeSize="large">Revenue</span>
+          <span class="material-icons">monetization_on</span>
+          <span matBadge="{{movieDetail.revenue}}" matBadgeSize="large">Revenue</span>
         </p>
         <span class="genre">
-          Genre : {{movieDetail.genres[0].name}} {{movieDetail.genres[1].name}} {{movieDetail.genres[2].name}}
+          Genre : {{movieDetail.genres[0].name}}, {{movieDetail.genres[1].name}} & {{movieDetail.genres[2].name}}
         </span>
         <span class="prodcomp">
           Production Companies : {{movieDetail.production_companies[0].name}} / {{movieDetail.production_companies[1].name}} / {{movieDetail.production_companies[2].name}}
         </span>
+        <span class="material-icons popular">thumb_up</span><span class="popular-text">{{movieDetail.popularity}}</span>
+        <span class="material-icons poll">poll</span><span class="poll-text">{{movieDetail.vote_count}} (AVG: {{movieDetail.vote_average}})</span>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="prod-comp">
+  <mat-grid-list cols="1" rowHeight="60px">
+    <mat-grid-tile>
+      <div class="hd-dv">
+        <span class="bl-text">Production Companies</span>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="300px">
+    <mat-grid-tile [colspan]="1"  *ngFor="let prodcomp of movieDetail.production_companies">
+      <mat-card>
+          <mat-card-header>
+          </mat-card-header>
+          <img mat-card-image src="{{IMAGE_BASE_PATH+prodcomp.logo_path}}" alt="{{prodcomp.origin_country}}">
+          <mat-card-content>
+            <span>
+              {{prodcomp.name}}
+            </span>
+          </mat-card-content>
+      </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
