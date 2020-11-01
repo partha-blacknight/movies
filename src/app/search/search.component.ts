@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -7,12 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
   searchval: string = '';
-  themeColor: 'primary' | 'accent' | 'warn' = 'primary'; 
+  themeColor: 'primary' | 'accent' | 'warn' = 'primary';
   isDark = true;
-  
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+
+  }
+
+  onChangeEvent(event: any){
+    console.log(event.target.value);
+    this.searchval = event.target.value;
+  }
+
+  searchMovies(event: any){
+    this.router.navigate(['search'], {
+      state: { example: this.searchval }
+    });
   }
 
 }

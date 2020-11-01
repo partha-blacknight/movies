@@ -1,0 +1,22 @@
+<div class="detail-grid">
+  <mat-grid-list cols="4" rowHeight="500px">
+    <mat-grid-tile [colspan]="1">
+      <img mat-card-image src="{{IMAGE_BASE_PATH+movieDetail.poster_path}}" alt="{{movieDetail.original_title}}" class="image">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3">
+        <span class="title">{{movieDetail.original_title}} ({{movieDetail.release_date}})</span>
+        <span class="tagline">{{movieDetail.tagline}}</span>
+        <span class="overview">Overview</span>
+        <span class="overview-text">{{movieDetail.overview}}</span>
+        <p class="revenue">
+            <span matBadge="{{movieDetail.revenue}}" matBadgeSize="large">Revenue</span>
+        </p>
+        <span class="genre">
+          Genre : {{movieDetail.genres[0].name}} {{movieDetail.genres[1].name}} {{movieDetail.genres[2].name}}
+        </span>
+        <span class="prodcomp">
+          Production Companies : {{movieDetail.production_companies[0].name}} / {{movieDetail.production_companies[1].name}} / {{movieDetail.production_companies[2].name}}
+        </span>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

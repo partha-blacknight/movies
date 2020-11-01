@@ -1,0 +1,20 @@
+<mat-grid-list [appGridCols]="{xs: 1, sm: 3, md: 4, lg: 6, xl: 8}" rowHeight="480px" *ngIf="movielist">
+    <mat-grid-tile *ngFor="let movie of movielist" [routerLink]="['/detail', movie.id]">
+        <mat-card class="example-card">
+            <mat-card-header>
+            </mat-card-header>
+            <img mat-card-image *ngIf="movie.poster_path" src="{{IMAGE_BASE_PATH+movie.poster_path}}" alt="{{movie.title}}" class="image">
+            <img mat-card-image *ngIf="!movie.poster_path" src="https://image.tmdb.org/t/p/w780/bOGkgRGdhrBYJSLpXaxhXVstddV.jpg" alt="{{movie.title}}" class="image">
+            <mat-card-content>
+              <span>
+                {{movie.original_title}}
+              </span>
+            </mat-card-content>
+            <mat-card-footer>
+                <span class="spanpopular" matBadge="{{movie.popularity | number : '1.2-2' }}" matBadgeSize="large" matBadgeOverlap="true"
+                  matBadgeColor="accent"></span>
+                <span class="spandate">Release Date: {{movie.release_date}}</span>
+            </mat-card-footer>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

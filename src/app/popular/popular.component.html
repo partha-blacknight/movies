@@ -1,0 +1,22 @@
+<mat-grid-list [appGridCols]="{xs: 1, sm: 3, md: 4, lg: 6, xl: 8}" rowHeight="480px">
+    <mat-grid-tile *ngFor="let popular of popularMovie">
+        <mat-card class="example-card">
+            <mat-card-header>
+            </mat-card-header>
+            <img mat-card-image src="{{IMAGE_BASE_PATH+popular.poster_path}}" alt="{{popular.title}}" class="image">
+            <mat-card-content>
+              <span>
+                {{popular.original_title}}
+              </span>
+            </mat-card-content>
+            <mat-card-footer>
+                <span class="spanpopular" matBadge="{{popular.popularity | number : '1.2-2' }}" matBadgeSize="large" matBadgeOverlap="true"
+                  matBadgeColor="accent"></span>
+                <span class="spandate">Release Date: {{popular.release_date}}</span>
+            </mat-card-footer>
+        </mat-card>     
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalPopularMovie"
+  [pageIndex]="currentPage" (page)="handlePage($event)">
+</mat-paginator>

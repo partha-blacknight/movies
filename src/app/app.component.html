@@ -1,11 +1,20 @@
 <div>
   <mat-toolbar color="primary">
     <div class="parent-search">
+      <button mat-button [matMenuTriggerFor]="moviemenu" class="mnItem">Movies</button>
+      <button mat-button [matMenuTriggerFor]="tvshowmenu" class="mnItem">TV Shows</button>
+      <mat-menu #moviemenu="matMenu">
+        <button mat-menu-item (click)="navigateMenu('top-rated')">Top Rated</button>
+        <button mat-menu-item (click)="navigateMenu('upcoming')">Upcoming</button>
+        <button mat-menu-item (click)="navigateMenu('popular')">Popular</button>
+      </mat-menu>
+      <mat-menu #tvshowmenu="matMenu">
+        <button mat-menu-item (click)="navigateTvMenu('top-rated-tvshow')">Top Rated</button>
+        <button mat-menu-item (click)="navigateTvMenu('on-tvshow')">ON TV</button>
+        <button mat-menu-item (click)="navigateTvMenu('popular-tvshow')">Popular</button>
+      </mat-menu>
       <app-search></app-search>
     </div>
   </mat-toolbar>
-  <div>
-    <app-movielist></app-movielist>
-  </div>
 </div>
 <router-outlet></router-outlet>

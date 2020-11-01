@@ -1,28 +1,28 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MovieserviceService } from '../movieservice.service';
+import { TvshowService } from '../tvshow.service';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
-  selector: 'app-movielist',
-  templateUrl: './movielist.component.html',
-  styleUrls: ['./movielist.component.scss']
+  selector: 'app-tv-show-list',
+  templateUrl: './tv-show-list.component.html',
+  styleUrls: ['./tv-show-list.component.scss']
 })
-export class MovielistComponent implements OnInit {
+export class TvShowListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  public topRatedMovie: any;
+  public topRatedTvShow: any;
   public array: any;
   public displayedColumns = ['', '', '', '', ''];
-  public totalTopRateMovie: number = 0;
+  public totalTopRateTvShow: number = 0;
   public pageSize = 20;
   public currentPage = 1;
   public IMAGE_BASE_PATH: string = "";
 
-  constructor(private movieservice: MovieserviceService) {
+  constructor(private tvshowservice: TvshowService) {
     this.IMAGE_BASE_PATH = "https://image.tmdb.org/t/p/w220_and_h330_face";
   }
 
   ngOnInit(): void {
-    this.getTopRatedMovie(this.currentPage);  
+    this.getTopRatedTvShow(this.currentPage);  
   }
 
   public handlePage(e: any) {
@@ -31,13 +31,13 @@ export class MovielistComponent implements OnInit {
     this.iterator();
   }
 
-  private getTopRatedMovie(pageNo) {
-    this.movieservice.getTopRatedMovie(pageNo)
+  private getTopRatedTvShow(pageNo) {
+    this.tvshowservice.getTopRatedTvShow(pageNo)
       .subscribe((response: any) => {
-        this.topRatedMovie = response.results;
-        this.topRatedMovie.paginator = this.paginator;
+        this.topRatedTvShow = response.results;
+        this.topRatedTvShow.paginator = this.paginator;
         this.array = response;
-        this.totalTopRateMovie = this.array.total_results;
+        this.totalTopRateTvShow = this.array.total_results;
         this.iterator();
       });
   }  
@@ -46,7 +46,7 @@ export class MovielistComponent implements OnInit {
     const end = (this.currentPage + 1) * this.pageSize;
     const start = this.currentPage * this.pageSize;
     const part = this.array.results.slice(start, end);
-    this.getTopRatedMovie(this.currentPage);
+    this.getTopRatedTvShow(this.currentPage);
   }
 
 }

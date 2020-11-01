@@ -1,0 +1,22 @@
+<mat-grid-list [appGridCols]="{xs: 1, sm: 3, md: 4, lg: 6, xl: 8}" rowHeight="480px">
+    <mat-grid-tile *ngFor="let toptvshow of topRatedTvShow">
+        <mat-card class="example-card">
+            <mat-card-header>
+            </mat-card-header>
+            <img mat-card-image src="{{IMAGE_BASE_PATH+toptvshow.poster_path}}" alt="{{toptvshow.title}}" class="image">
+            <mat-card-content>
+              <span>
+                {{toptvshow.original_title}}
+              </span>
+            </mat-card-content>
+            <mat-card-footer>
+                <span class="spanpopular" matBadge="{{toptvshow.popularity | number : '1.2-2' }}" matBadgeSize="large" matBadgeOverlap="true"
+                  matBadgeColor="accent"></span>
+                <span class="spandate">Release Date: {{toptvshow.release_date}}</span>
+            </mat-card-footer>
+        </mat-card>     
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true" [length]="totalTopRateTvShow"
+  [pageIndex]="currentPage" (page)="handlePage($event)">
+</mat-paginator>
